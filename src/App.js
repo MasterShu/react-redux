@@ -1,21 +1,26 @@
 import React from "react";
+import { connect } from "react-redux";
+import { addNum, addNumAsync, minusNum } from "./index.redux";
 
+// App = connect(mapStatetoProps, actionCreators)(App);
+
+@connect(
+    // state 属性
+    state => {return {num: state}},
+    // 需要传入的方法
+    {addNum, addNumAsync, minusNum}
+)
 class App extends React.Component {
     // constructor(props){
     //     super(props)
     // }
     render(){
-        const store = this.props.store;
-        const num = store.getState();
-        const addNum = this.props.addNum;
-        const minusNum = this.props.minusNum;
-        const addNumAsync = this.props.addNumAsync;
         return(
             <div>
-                <h1>Now number is {num} </h1>
-                <button onClick={() => store.dispatch(addNum())}>ADD NUMBER</button>
-                <button onClick={() => store.dispatch(minusNum())}>MINUS NUMBER</button>
-                <button onClick={() => store.dispatch(addNumAsync())}>wait a minute ADD NUMBER</button>
+                <h1>Now number is {this.props.num} </h1>
+                <button onClick={this.props.addNum}>ADD NUMBER</button>
+                <button onClick={this.props.minusNum}>MINUS NUMBER</button>
+                <button onClick={this.props.addNumAsync}>wait a minute ADD NUMBER</button>
             </div>
 
         )
