@@ -20,3 +20,11 @@ export function addNum() {
 export function minusNum() {
     return {type: MINUS_NUM};
 }
+
+export function addNumAsync() {
+    return dispatch => {
+        setTimeout(() => {
+            dispatch(addNum())
+        }, 2000);
+    }
+}
