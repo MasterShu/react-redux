@@ -6,7 +6,7 @@ import { addNum, addNumAsync, minusNum } from "./index.redux";
 
 @connect(
     // state 属性
-    state => {return {num: state}},
+    state => {return {num: state.counter}},
     // 需要传入的方法
     {addNum, addNumAsync, minusNum}
 )
